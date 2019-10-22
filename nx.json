@@ -13,6 +13,24 @@
     },
     "task-management-poc-e2e": {
       "tags": []
+    },
+    "material": {
+      "tags": []
+    },
+    "core-data": {
+      "tags": []
+    },
+    "ui-toolbar": {
+      "tags": []
+    },
+    "ui-login": {
+      "tags": []
+    },
+    "not-found": {
+      "tags": []
+    },
+    "core-state": {
+      "tags": []
     }
   }
 }

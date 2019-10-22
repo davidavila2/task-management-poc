@@ -1,0 +1,18 @@
+<div class="m-0 d-flex justify-content-center mt-3">
+  <div class="w-50 ml-3 mr-2">
+    <task-management-poc-tasks-list
+    [tasks]="tasks$ | async"
+    (selected)="selectTask($event)"
+    (deleted)="deleteTask($event)"
+    ></task-management-poc-tasks-list>
+  </div>
+
+  <div class="w-50 mr-3 ml-2">
+    <task-management-poc-tasks-details
+    [tasks]="tasks$ | async"
+    (saved)="saveTask($event)"
+    (cancelled)="cancel()"
+    ></task-management-poc-tasks-details>
+  </div>
+</div>
+<pre>{{tasks$ | async | json}}</pre>

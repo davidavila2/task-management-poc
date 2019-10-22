@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>
+        <span *ngIf="currentTask.id; else elseBlock">{{originalTask}}</span>
+        <ng-template #elseBlock>Select an App</ng-template>
+      </h1>
+    </mat-card-title>
+  </mat-card-header>
+  <form (submit)="saved.emit(currentTask)">
+    <mat-card-content class="d-flex flex-column">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Title" [(ngModel)]="currentTask.title" type="text" name="title">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Details" [(ngModel)]="currentTask.description" type="text" name="details"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-button color="primary">Save</button>
+      <button type="button" mat-button (click)="cancelled.emit(currentTask)">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

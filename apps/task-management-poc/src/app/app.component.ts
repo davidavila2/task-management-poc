@@ -6,5 +6,9 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  title = "task-management-poc";
+  title = "Task Management POC";
+
+  links = [
+    { path: '/tasks', icon: 'home', title: 'Tasks' },
+  ];
 }

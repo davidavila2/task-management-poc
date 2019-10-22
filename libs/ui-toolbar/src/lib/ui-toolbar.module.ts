@@ -8,6 +8,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     CommonModule,
     MaterialModule
   ],
-  declarations: [ToolbarComponent]
+  declarations: [ToolbarComponent],
+  exports: [ToolbarComponent]
 })
 export class UiToolbarModule {}
