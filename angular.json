@@ -1,0 +1,142 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "task-management-poc": {
+      "root": "apps/task-management-poc/",
+      "sourceRoot": "apps/task-management-poc/src",
+      "projectType": "application",
+      "prefix": "task-management-poc",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/task-management-poc",
+            "index": "apps/task-management-poc/src/index.html",
+            "main": "apps/task-management-poc/src/main.ts",
+            "polyfills": "apps/task-management-poc/src/polyfills.ts",
+            "tsConfig": "apps/task-management-poc/tsconfig.app.json",
+            "assets": [
+              "apps/task-management-poc/src/favicon.ico",
+              "apps/task-management-poc/src/assets"
+            ],
+            "styles": ["apps/task-management-poc/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/task-management-poc/src/environments/environment.ts",
+                  "with": "apps/task-management-poc/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "task-management-poc:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "task-management-poc:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "task-management-poc:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/task-management-poc/tsconfig.app.json",
+              "apps/task-management-poc/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/task-management-poc/jest.config.js",
+            "tsConfig": "apps/task-management-poc/tsconfig.spec.json",
+            "setupFile": "apps/task-management-poc/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "task-management-poc-e2e": {
+      "root": "apps/task-management-poc-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/task-management-poc-e2e/cypress.json",
+            "tsConfig": "apps/task-management-poc-e2e/tsconfig.e2e.json",
+            "devServerTarget": "task-management-poc:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "task-management-poc:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/task-management-poc-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "style": "scss",
+      "framework": "angular"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "task-management-poc"
+}
