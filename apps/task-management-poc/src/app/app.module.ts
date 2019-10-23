@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@task-management-poc/material';
 import { CoreDataModule } from '@task-management-poc/core-data';
 import { NotFoundModule } from '@task-management-poc/not-found';
-// import { UiLoginModule } from '@task-management-poc/ui-login';
+import { UiLoginModule } from '@task-management-poc/ui-login';
 import { UiToolbarModule } from '@task-management-poc/ui-toolbar';
 import { TasksComponent } from './tasks/tasks.component';
 import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     CoreDataModule,
     NotFoundModule,
-    // UiLoginModule,
+    UiLoginModule,
     UiToolbarModule,
     RoutingModule,
     FormsModule

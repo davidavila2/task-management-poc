@@ -23,13 +23,13 @@
     "ui-toolbar": {
       "tags": []
     },
-    "ui-login": {
-      "tags": []
-    },
     "not-found": {
       "tags": []
     },
     "core-state": {
+      "tags": []
+    },
+    "ui-login": {
       "tags": []
     }
   }
