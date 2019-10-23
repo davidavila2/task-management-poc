@@ -20,7 +20,8 @@
       "@task-management-poc/ui-toolbar": ["libs/ui-toolbar/src/index.ts"],
       "@task-management-poc/not-found": ["libs/not-found/src/index.ts"],
       "@task-management-poc/core-state": ["libs/core-state/src/index.ts"],
-      "@task-management-poc/ui-login": ["libs/ui-login/src/index.ts"]
+      "@task-management-poc/ui-login": ["libs/ui-login/src/index.ts"],
+      "@task-management-poc/ui-signup": ["libs/ui-signup/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

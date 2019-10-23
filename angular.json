@@ -309,6 +309,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "ui-signup": {
+      "root": "libs/ui-signup",
+      "sourceRoot": "libs/ui-signup/src",
+      "projectType": "library",
+      "prefix": "task-management-poc",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui-signup/tsconfig.lib.json",
+              "libs/ui-signup/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/ui-signup/jest.config.js",
+            "tsConfig": "libs/ui-signup/tsconfig.spec.json",
+            "setupFile": "libs/ui-signup/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

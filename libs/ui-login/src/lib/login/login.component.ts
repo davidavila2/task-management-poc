@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService, User } from '@task-management-poc/core-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'task-management-poc-login',
@@ -8,11 +9,12 @@ import { UserService, User } from '@task-management-poc/core-data';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  logIn: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -20,19 +22,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('lgo', this.form.value);
-    if (this.form.invalid) return;
-    this.userService.signIn(this.form.value)
+    console.log('lgo', this.logIn.value);
+    if (this.logIn.invalid) return;
+    this.userService.signIn(this.logIn.value).subscribe()
   }
 
-  signUp() {
-    console.log('lgo', this.form.value);
-    if (this.form.invalid) return;
-    this.userService.signUp(this.form.value).subscribe()
+  goToSignup() {
+    // tslint:disable-next-line: no-unused-expression
+    this.router.navigate(['/signup']);
   }
 
   private initForm() {
-    this.form = this.formBuilder.group({
+    this.logIn = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required])]
     }, { updateOn: 'submit' })

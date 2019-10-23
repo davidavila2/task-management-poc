@@ -1,0 +1,12 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "task-management-poc",
+      "camelCase"
+    ],
+    "component-selector": [true, "element", "task-management-poc", "kebab-case"]
+  }
+}
