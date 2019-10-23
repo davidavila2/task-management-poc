@@ -8,13 +8,13 @@ import { Task, TaskService } from '@task-management-poc/core-data';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-  tasks$;
+  tasks$
   selectedTask: Task;
 
   constructor(private taskService: TaskService) { }
 
   ngOnInit() {
-
+    // this.getTask()
   }
 
   resetTask() {

@@ -5,7 +5,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '@task-management-poc/material';
-import { CoreDataModule } from '@task-management-poc/core-data';
+import { CoreDataModule, TokenInterceptorService } from '@task-management-poc/core-data';
 import { NotFoundModule } from '@task-management-poc/not-found';
 import { UiLoginModule } from '@task-management-poc/ui-login';
 import { UiSignupModule } from '@task-management-poc/ui-signup';
@@ -16,6 +16,7 @@ import { TasksDetailsComponent } from './tasks/tasks-details/tasks-details.compo
 
 import { RoutingModule } from './routing.module';
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -37,7 +38,13 @@ import { FormsModule } from '@angular/forms';
     TasksListComponent,
     TasksDetailsComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
