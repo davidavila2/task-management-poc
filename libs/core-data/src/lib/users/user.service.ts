@@ -26,9 +26,9 @@ export class UserService {
     return this.httpClient.post(this.getUrlForSignUp(), user)
   }
 
-  getToken(accessToken: string) {
-    console.log('my Token', accessToken)
-    return localStorage.getItem(accessToken)
+  getToken() {
+    console.log('my Token', )
+    return localStorage.getItem('token')
   }
 
   setToken(accessToken: string) {
