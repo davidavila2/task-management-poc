@@ -8,3 +8,5 @@ export { User } from './lib/users/user';
 export { UserService } from './lib/users/user.service';
 export { TokenInterceptorService} from './lib/users/token-interceptor.service';
 export { UserGuard } from './lib/users/user.guard';
+
+export { NotifyService } from './lib/notify.service';

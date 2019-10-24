@@ -1,11 +1,15 @@
-// import { ActionReducerMap } from '@ngrx/store';
+import { ActionReducerMap } from '@ngrx/store';
 
-// export interface AppState {}
+import * as fromTask from './tasks-ngrx/tasks.reducer';
 
-// export const reducers: ActionReducerMap<AppState> = {
+export interface AppState {
+  task: fromTask.TaskState;
+}
 
-// }
+export const reducers: ActionReducerMap<AppState> = {
+  task: fromTask.TaskReducer
+}
 
-// export const defaultState: AppState = {
-
-// }
+export const defaultState: AppState = {
+  task: { ids: [] } as fromTask.TaskState
+}
