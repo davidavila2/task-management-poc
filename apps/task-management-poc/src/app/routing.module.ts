@@ -8,7 +8,7 @@ import { UserGuard } from '@task-management-poc/core-data';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'tasks', component: TasksComponent },
+  { path: 'tasks', canActivate: [UserGuard], component: TasksComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' }

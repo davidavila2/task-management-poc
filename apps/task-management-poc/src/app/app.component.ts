@@ -11,8 +11,9 @@ export class AppComponent {
 
   links = [
     { path: '/tasks', icon: 'home', title: 'Tasks' },
-    { path: '/login', icon: 'account_circle', title: 'Login'}
   ];
+
+  UserAuthenticated$ = this.userService.IsAuthenticated$;
 
   constructor(public userService: UserService) {}
 }

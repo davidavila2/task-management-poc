@@ -2,6 +2,7 @@
   <div class="w-50 ml-3 mr-2">
     <task-management-poc-tasks-list
     [tasks]="tasks$ | async"
+    [loading]="isLoading$ | async"
     (selected)="selectTask($event)"
     (deleted)="deleteTask($event)"
     ></task-management-poc-tasks-list>
@@ -16,3 +17,5 @@
     ></task-management-poc-tasks-details>
   </div>
 </div>
+
+<pre>{{tasks$ | async | json}}</pre>

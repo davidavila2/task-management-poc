@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { Task } from '@task-management-poc/core-data';
 
 @Component({
@@ -8,14 +8,20 @@ import { Task } from '@task-management-poc/core-data';
   styleUrls: ['./tasks-details.component.scss']
 })
 export class TasksDetailsComponent {
-  currentTask;
-  originalTask;
+  status: string[] = [
+    'OPEN',
+    'DONE',
+    'IN_PROGRESS'
+  ]
+
+  currentTask: Task;
+  originalTask: string;
 
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
   @Input() form: FormGroup;
   @Input() set tasks(value: Task) {
-    if (value) this.originalTask = value.title;
+    if (value) this.originalTask = value.status;
     this.currentTask = Object.assign({}, value);
   }
 
@@ -27,5 +33,4 @@ export class TasksDetailsComponent {
   cancel(): void {
     this.cancelled.emit();
   }
-
 }

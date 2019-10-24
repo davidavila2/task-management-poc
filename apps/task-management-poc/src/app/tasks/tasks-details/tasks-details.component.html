@@ -7,20 +7,27 @@
       </h1>
     </mat-card-title>
   </mat-card-header>
-  <form [formGroup]="form" #formDirective="ngForm" 
-  (ngSubmit)="submitForm(formDirective)">
+  <form [formGroup]="form" #formDirective="ngForm" (ngSubmit)="submitForm(formDirective)">
     <mat-card-content class="d-flex flex-column">
-      <mat-form-field class="full-width">
+      <mat-form-field>
         <input matInput placeholder="Title" formControlName="title">
         <mat-error *ngIf="form.get('title').hasError('required')">Required Field</mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width">
+      <mat-form-field>
         <textarea matInput placeholder="Details" formControlName="description"></textarea>
         <mat-error *ngIf="form.get('description').hasError('required')">Required Field</mat-error>
       </mat-form-field>
+      <mat-form-field class=w-50>
+        <mat-label>Progress</mat-label>
+        <mat-select matInput formControlName="status">
+          <mat-option *ngFor="let option of status" [value]="option">{{option}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('status').hasError('required')">You must make a selection</mat-error>
+      </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button type="submit" mat-button color="primary" [disabled]="form.invalid">{{currentTask.id ? 'Update' : 'Create'}}</button>
+      <button type="submit" mat-button color="primary"
+        [disabled]="form.invalid">{{currentTask.id ? 'Update' : 'Create'}}</button>
       <button type="reset" mat-button (click)="cancel()">Cancel</button>
     </mat-card-actions>
   </form>

@@ -2,11 +2,12 @@ export interface Task {
   id: number,
   description: string,
   title: string,
-  // status: TaskStatus
+  status: string
 }
 
 export const emptyTask: Task = {
   id: null,
   title: '',
+  status: '',
   description: '',
 }

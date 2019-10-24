@@ -16,15 +16,16 @@ import { TasksDetailsComponent } from './tasks/tasks-details/tasks-details.compo
 
 import { RoutingModule } from './routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CoreStateModule } from '@task-management-poc/core-state';
 
 
 @NgModule({
   imports: [
-    BrowserModule,
+  BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     CoreDataModule,
+    CoreStateModule,
     NotFoundModule,
     UiLoginModule,
     UiSignupModule,

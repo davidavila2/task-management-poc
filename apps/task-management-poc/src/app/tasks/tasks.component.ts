@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Task, TaskService } from '@task-management-poc/core-data';
-import { FormGroup, FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
+import { Task, NotifyService } from '@task-management-poc/core-data';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TaskFacade } from '@task-management-poc/core-state';
 
 @Component({
   selector: 'task-management-poc-tasks',
@@ -10,61 +11,57 @@ import { FormGroup, FormBuilder, Validators, FormGroupDirective } from '@angular
 })
 export class TasksComponent implements OnInit {
   form: FormGroup;
-  tasks$
-  selectedTask: Task;
+  tasks$: Observable<Task[]> = this.taskFacade.task$;
+  currentTask$: Observable<Task> = this.taskFacade.currentTask$;
+  isLoading$: Observable<boolean> = this.taskFacade.isTaskLoading$;
 
-  constructor(private taskService: TaskService, private fb: FormBuilder) { }
+  constructor(
+    private taskFacade: TaskFacade,
+    private notifyService: NotifyService,
+    private fb: FormBuilder
+  ) { }
 
-  ngOnInit() {
-    this.getTask();
+  ngOnInit(): void {
     this.initForm();
+    this.taskFacade.loadTask();
+    this.taskFacade.mutations$.subscribe(() => this.resetTask());
   }
 
-  getTask() {
-    this.tasks$ = this.taskService.all();
-  }
-
-  resetTask() {
+  resetTask(): void {
     this.form.reset();
   }
 
-  selectTask(task: Task) {
-    this.selectedTask = task;
+  selectTask(task: Task): void {
+    console.log(task);
     this.form.patchValue(task);
+    this.taskFacade.selectTask(task.id);
   }
 
-  saveTask(): void {
+  saveTask(task: Task): void {
     if (this.form.invalid) return;
-    if (this.form.value.id) {
-      console.log(this.form.value.id);
-      this.taskService.update(this.form.value).subscribe(() => this.mutationsResponse());
-    } else {
-      this.taskService.create(this.form.value).subscribe(() => this.mutationsResponse());
-    }
+    console.log('save test', this.form.value.id);
+    console.log('save test 2', this.form.value);
+    console.log('save test 3', task.id);
+    task.id ?
+      this.taskFacade.updateTask(this.form.value) :
+      this.taskFacade.createTask(this.form.value);
+    
   }
 
-  deleteTask(task: Task) {
-    console.log('deleted from component', task);
-    const confirmation = confirm(`Are you sure you want to delete ${task.title} ?`);
+  deleteTask(task: Task): void {
+    // const confirmation = confirm(`Are you sure you want to delete ${task.title} ?`);
 
-    if (confirmation) {
-      this.taskService.delete(task.id).subscribe(() => this.mutationsResponse());
-    }
-  }
-
-  cancel() {
-    this.resetTask();
-  }
-
-  private mutationsResponse() {
-    this.resetTask();
-    this.getTask();
+    // if (confirmation) {
+    this.taskFacade.deleteTask(task)
+    // }
   }
 
   private initForm(): void {
     this.form = this.fb.group({
+      id: ['', null],
       title: ['', Validators.compose([Validators.required])],
-      description: ['', Validators.compose([Validators.required])]
+      description: ['', Validators.compose([Validators.required])],
+      status: ['', Validators.compose([Validators.required])]
     });
   }
 

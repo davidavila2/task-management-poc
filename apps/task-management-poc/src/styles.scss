@@ -4,7 +4,7 @@
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Patrick Hand', cursive, sans-serif;
 }
 
 app-root {
@@ -30,8 +30,8 @@ mat-list-item:not(:first-of-type) {
   border-top: 1px solid #efefef;
 }
 
-.mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
-  font-size: 50% !important;
-  margin-top: .54167em;
-  top: calc(100% - 1.66667em);
-}
+// .mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
+//   font-size: 50% !important;
+//   margin-top: .54167em;
+//   top: calc(100% - 1.66667em);
+// }

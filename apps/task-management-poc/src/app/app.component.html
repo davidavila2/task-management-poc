@@ -1,6 +1,7 @@
 <ui-toolbar
   [title]="title"
   [sidenav]="sidenav"
+  [userAuthenticated]="UserAuthenticated$ | async"
 ></ui-toolbar>
 
 <mat-sidenav-container class="vh-100">

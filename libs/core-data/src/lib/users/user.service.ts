@@ -12,12 +12,15 @@ const SIGN_UP = 'http://localhost:3000/auth/signup';
 })
   
 export class UserService {
-  authenticatedUser$ = new BehaviorSubject(false);
+  accessToken: string;
+  IsAuthenticated$ = new BehaviorSubject(false);
 
   constructor(
     private httpClient: HttpClient,
     private router: Router
-  ) { }
+  ) { 
+    this.setToken(this.getToken(this.accessToken) || '')
+  }
 
   signIn(user: User) {
     return this.httpClient.post<{accessToken: string}>(this.getUrlForSignIn(), user).pipe(
@@ -31,12 +34,13 @@ export class UserService {
   }
 
   getToken(accessToken: string) {
+    console.log('my token', accessToken);
     return localStorage.getItem(accessToken);
   }
 
   setToken(accessToken: string) {
     localStorage.setItem('accessToken', accessToken);
-    this.authenticatedUser$.next(accessToken !== '');
+    this.IsAuthenticated$.next(accessToken !== '');
   }
 
   logout() {
