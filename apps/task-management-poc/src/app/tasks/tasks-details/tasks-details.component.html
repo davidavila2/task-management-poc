@@ -3,22 +3,25 @@
     <mat-card-title>
       <h1>
         <span *ngIf="currentTask.id; else elseBlock">{{originalTask}}</span>
-        <ng-template #elseBlock>Select an App</ng-template>
+        <ng-template #elseBlock>Create a Task</ng-template>
       </h1>
     </mat-card-title>
   </mat-card-header>
-  <form (submit)="saved.emit(currentTask)">
+  <form [formGroup]="form" #formDirective="ngForm" 
+  (ngSubmit)="submitForm(formDirective)">
     <mat-card-content class="d-flex flex-column">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Title" [(ngModel)]="currentTask.title" type="text" name="title">
+        <input matInput placeholder="Title" formControlName="title">
+        <mat-error *ngIf="form.get('title').hasError('required')">Required Field</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <textarea matInput placeholder="Details" [(ngModel)]="currentTask.description" type="text" name="details"></textarea>
+        <textarea matInput placeholder="Details" formControlName="description"></textarea>
+        <mat-error *ngIf="form.get('description').hasError('required')">Required Field</mat-error>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button type="submit" mat-button color="primary">Save</button>
-      <button type="button" mat-button (click)="cancelled.emit(currentTask)">Cancel</button>
+      <button type="submit" mat-button color="primary" [disabled]="form.invalid">{{currentTask.id ? 'Update' : 'Create'}}</button>
+      <button type="reset" mat-button (click)="cancel()">Cancel</button>
     </mat-card-actions>
   </form>
 </mat-card>

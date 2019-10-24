@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService, User } from '@task-management-poc/core-data';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  // @Input() 
   logIn: FormGroup;
 
   constructor(
@@ -22,13 +23,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('lgo', this.logIn.value);
     if (this.logIn.invalid) return;
-    this.userService.signIn(this.logIn.value).subscribe()
+    this.userService.signIn(this.logIn.value).subscribe();
   }
 
   goToSignup() {
-    // tslint:disable-next-line: no-unused-expression
     this.router.navigate(['/signup']);
   }
 

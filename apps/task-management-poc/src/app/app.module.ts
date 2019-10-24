@@ -15,7 +15,7 @@ import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
 import { TasksDetailsComponent } from './tasks/tasks-details/tasks-details.component';
 
 import { RoutingModule } from './routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -30,20 +30,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     UiSignupModule,
     UiToolbarModule,
     RoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
     TasksComponent,
     TasksListComponent,
     TasksDetailsComponent
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true
-    },
   ],
   bootstrap: [AppComponent]
 })

@@ -14,7 +14,7 @@ export class TaskService {
   constructor(private httpClient: HttpClient) { }
 
   all() {
-    return this.httpClient.get(this.getUrl());
+    return this.httpClient.get(this.getUrl())
   }
 
   findOne(task: Task) {
@@ -29,15 +29,15 @@ export class TaskService {
     return this.httpClient.patch(this.getUrlForId(task.id), task);
   }
 
-  delete(task: Task) {
-    return this.httpClient.delete(this.getUrlForId(task.id));
+  delete(taskId) {
+    return this.httpClient.delete(this.getUrlForId(taskId));
   }
 
   private getUrl(): string {
-    return `${BASE_URL}${model}`
+    return `${BASE_URL}${model}`;
   }
 
   private getUrlForId(id: number): string {
-    return `${this.getUrl}/${id}`;
+    return `${this.getUrl()}/${id}`;
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { UserService } from '@task-management-poc/core-data';
 
 @Component({
   selector: "task-management-poc-root",
@@ -12,4 +13,6 @@ export class AppComponent {
     { path: '/tasks', icon: 'home', title: 'Tasks' },
     { path: '/login', icon: 'account_circle', title: 'Login'}
   ];
+
+  constructor(public userService: UserService) {}
 }

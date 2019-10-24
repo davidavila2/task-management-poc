@@ -5,6 +5,8 @@ export interface Task {
   // status: TaskStatus
 }
 
-// export interface TaskStatus {
-  
-// }
+export const emptyTask: Task = {
+  id: null,
+  title: '',
+  description: '',
+}

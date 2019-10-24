@@ -6,15 +6,15 @@
   </mat-card-header>
   <mat-card-content>
     <mat-list>
-      <mat-list-item *ngFor="let task of tasks" (click)="selected.emit(task)">
+      <mat-list-item *ngFor="let task of tasks" (click)="selected.emit(task); $event.stopImmediatePropagation()">
         <h3 mat-line>
           {{task.title}}
         </h3>
         <p mat-line>
           {{task.description}}
         </p>
-        <button mat-icon-button (click)="deleted.emit(task);$event.stopImmediatePropagation()">
-          <mat-icon *ngIf="!readonly">close</mat-icon>
+        <button mat-icon-button (click)="deleted.emit(task); $event.stopImmediatePropagation()">
+          <mat-icon>close</mat-icon>
         </button>
       </mat-list-item>
     </mat-list>

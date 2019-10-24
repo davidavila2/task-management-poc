@@ -10,9 +10,9 @@
   <div class="w-50 mr-3 ml-2">
     <task-management-poc-tasks-details
     [tasks]="tasks$ | async"
+    [form]="form"
     (saved)="saveTask($event)"
-    (cancelled)="cancel()"
+    (cancelled)="resetTask()"
     ></task-management-poc-tasks-details>
   </div>
 </div>
-<pre>{{tasks$ | async | json}}</pre>

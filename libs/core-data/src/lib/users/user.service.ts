@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from './user';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 const SIGN_IN = 'http://localhost:3000/auth/signin';
 const SIGN_UP = 'http://localhost:3000/auth/signup';
@@ -19,16 +20,18 @@ export class UserService {
   ) { }
 
   signIn(user: User) {
-    return this.httpClient.post(this.getUrlForSignIn(), user)
+    return this.httpClient.post<{accessToken: string}>(this.getUrlForSignIn(), user).pipe(
+      tap(res => { localStorage.setItem('accessToken', res.accessToken) }),
+      tap(() => this.router.navigate(['/tasks']))
+    )
   }
 
   signUp(user: User) {
     return this.httpClient.post(this.getUrlForSignUp(), user)
   }
 
-  getToken() {
-    console.log('my Token', )
-    return localStorage.getItem('token')
+  getToken(accessToken: string) {
+    return localStorage.getItem(accessToken);
   }
 
   setToken(accessToken: string) {
