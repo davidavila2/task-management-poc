@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { UserService } from '@task-management-poc/core-data';
 

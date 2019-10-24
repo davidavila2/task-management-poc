@@ -29,7 +29,6 @@ export class TasksComponent implements OnInit {
   }
 
   selectTask(task: Task) {
-    console.log('selected', task);
     this.selectedTask = task;
     this.form.patchValue(task);
   }
