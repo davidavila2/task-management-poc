@@ -12,19 +12,19 @@ const SIGN_UP = 'http://localhost:3000/auth/signup';
 })
   
 export class UserService {
-  accessToken: string;
+  // accessToken: string;
   IsAuthenticated$ = new BehaviorSubject(false);
 
   constructor(
     private httpClient: HttpClient,
     private router: Router
   ) { 
-    this.setToken(this.getToken(this.accessToken) || '')
+    this.setToken(this.getToken() || '')
   }
 
-  signIn(user: User) {
+  logIn(user: User) {
     return this.httpClient.post<{accessToken: string}>(this.getUrlForSignIn(), user).pipe(
-      tap(res => { localStorage.setItem('accessToken', res.accessToken) }),
+      tap(res => { this.setToken(res.accessToken) }),
       tap(() => this.router.navigate(['/tasks']))
     )
   }
@@ -33,9 +33,8 @@ export class UserService {
     return this.httpClient.post(this.getUrlForSignUp(), user)
   }
 
-  getToken(accessToken: string) {
-    console.log('my token', accessToken);
-    return localStorage.getItem(accessToken);
+  getToken() {
+    return localStorage.getItem('accessToken');
   }
 
   setToken(accessToken: string) {

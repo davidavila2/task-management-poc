@@ -26,9 +26,16 @@ export class TasksDetailsComponent {
   }
 
   submitForm(formDirective: NgForm): void {
+    console.log('saved method from details', formDirective);
     this.saved.emit(formDirective);
     formDirective.resetForm();
   }
+
+  // submitForm(): void {
+  //   console.log('saved method from details', formDirective);
+  //   this.saved.emit(formDirective);
+  //   formDirective.resetForm();
+  // }
 
   cancel(): void {
     this.cancelled.emit();

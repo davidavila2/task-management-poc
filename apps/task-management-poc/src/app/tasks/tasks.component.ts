@@ -39,9 +39,6 @@ export class TasksComponent implements OnInit {
 
   saveTask(task: Task): void {
     if (this.form.invalid) return;
-    console.log('save test', this.form.value.id);
-    console.log('save test 2', this.form.value);
-    console.log('save test 3', task.id);
     task.id ?
       this.taskFacade.updateTask(this.form.value) :
       this.taskFacade.createTask(this.form.value);
@@ -49,16 +46,16 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(task: Task): void {
-    // const confirmation = confirm(`Are you sure you want to delete ${task.title} ?`);
+    const confirmation = confirm(`Are you sure you want to delete ${task} ?`);
 
-    // if (confirmation) {
+    if (confirmation) {
     this.taskFacade.deleteTask(task)
-    // }
+    }
   }
 
   private initForm(): void {
     this.form = this.fb.group({
-      id: ['', null],
+      id: [''],
       title: ['', Validators.compose([Validators.required])],
       description: ['', Validators.compose([Validators.required])],
       status: ['', Validators.compose([Validators.required])]

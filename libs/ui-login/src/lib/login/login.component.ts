@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  // @Input() 
   logIn: FormGroup;
 
   constructor(
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.logIn.invalid) return;
-    this.userService.signIn(this.logIn.value).subscribe();
+    this.userService.logIn(this.logIn.value).subscribe();
   }
 
   goToSignup() {

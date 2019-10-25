@@ -17,7 +17,7 @@
         <p mat-line>
           {{task.status}}
         </p>
-        <button mat-icon-button (click)="delete(task, $event)">
+        <button mat-icon-button (click)="delete(task.id, $event)">
           <mat-icon>close</mat-icon>
         </button>
       </mat-list-item>
