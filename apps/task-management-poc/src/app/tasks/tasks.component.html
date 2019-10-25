@@ -10,7 +10,7 @@
 
   <div class="w-50 mr-3 ml-2">
     <task-management-poc-tasks-details
-    [tasks]="tasks$ | async"
+    [tasks]="currentTask$ | async"
     [form]="form"
     (saved)="saveTask($event)"
     (cancelled)="resetTask()"
