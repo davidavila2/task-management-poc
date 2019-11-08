@@ -3,7 +3,7 @@ import { Task } from '@task-management-poc/core-data';
 import { TaskActions, TaskActionTypes } from './tasks.actions';
 
 export interface TaskState extends EntityState<Task> {
-  selectedTaskId: string | null;
+  selectedTaskId: number | null;
   isLoading: boolean;
 }
 
@@ -63,7 +63,7 @@ export function TaskReducer(state = initialState, action: TaskActions) {
     case TaskActionTypes.TASK_DELETED: {
       return adapter.removeOne(action.payload.id, {
         ...state,
-        isLoading: true
+        isLoading: false
       })
     }
     default:

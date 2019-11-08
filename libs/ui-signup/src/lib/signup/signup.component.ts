@@ -22,14 +22,12 @@ export class SignupComponent implements OnInit {
   }
 
   signUp() {
-    console.log('lgo', this.signup.value);
     if (this.signup.invalid) return;
     this.userService.signUp(this.signup.value).subscribe();
     this.router.navigate(['/login']);
   }
 
   goToLogin() {
-    console.log('click');
     this.router.navigate(['/login'])
   }
 

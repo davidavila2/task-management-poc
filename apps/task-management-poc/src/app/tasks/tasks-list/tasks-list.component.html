@@ -17,8 +17,11 @@
         <p mat-line>
           {{task.status}}
         </p>
-        <button mat-icon-button (click)="delete(task.id, $event)">
+        <button mat-icon-button (click)="delete(task, $event)">
           <mat-icon>close</mat-icon>
+        </button>
+        <button mat-icon-button (click)="$event.stopImmediatePropagation()" [routerLink]="task.id">
+          <mat-icon>more_vert</mat-icon>
         </button>
       </mat-list-item>
     </mat-list>

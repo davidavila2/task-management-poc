@@ -17,10 +17,6 @@
         <textarea matInput placeholder="Details" formControlName="description"></textarea>
         <mat-error *ngIf="form.get('description').hasError('required')">Required Field</mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <textarea matInput placeholder="Id" formControlName="id"></textarea>
-        <mat-error *ngIf="form.get('id').hasError('required')">Required Field</mat-error>
-      </mat-form-field>
       <mat-form-field class=w-50>
         <mat-label>Progress</mat-label>
         <mat-select matInput formControlName="status">

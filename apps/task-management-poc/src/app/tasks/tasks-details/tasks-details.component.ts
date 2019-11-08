@@ -9,33 +9,27 @@ import { Task } from '@task-management-poc/core-data';
 })
 export class TasksDetailsComponent {
   status: string[] = [
+    'IN_PROGRESS',
     'OPEN',
     'DONE',
-    'IN_PROGRESS'
-  ]
+  ];
 
   currentTask: Task;
   originalTask: string;
 
-  @Output() saved = new EventEmitter();
+  @Output() saved = new EventEmitter<Object>();
   @Output() cancelled = new EventEmitter();
+
   @Input() form: FormGroup;
   @Input() set tasks(value: Task) {
-    if (value) this.originalTask = value.status;
+    if (value) this.originalTask = value.title;
     this.currentTask = Object.assign({}, value);
   }
 
   submitForm(formDirective: NgForm): void {
-    console.log('saved method from details', formDirective);
-    this.saved.emit(formDirective);
+    this.saved.emit(this.form.value);
     formDirective.resetForm();
   }
-
-  // submitForm(): void {
-  //   console.log('saved method from details', formDirective);
-  //   this.saved.emit(formDirective);
-  //   formDirective.resetForm();
-  // }
 
   cancel(): void {
     this.cancelled.emit();

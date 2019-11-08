@@ -39,4 +39,8 @@ export class TaskService {
   private getUrlForId(id: number): string {
     return `${this.getUrl()}/${id}`;
   }
+
+  // private getUrlForIdToUpdateStatus(id: number): string {
+  //   return `${this.getUrl()}/${id}/status`;
+  // }
 }

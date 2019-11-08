@@ -19,7 +19,6 @@ export class TasksListComponent {
   }
 
   select(task: Task): void {
-    console.log(task);
     this.selected.emit(task)
   }
 

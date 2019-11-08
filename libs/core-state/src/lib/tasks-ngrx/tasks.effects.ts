@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { DataPersistence } from '@nrwl/nx';
 import { Effect, Actions } from '@ngrx/effects';
 import { TaskState } from './tasks.reducer';
@@ -41,7 +41,9 @@ export class TaskEffects {
   @Effect()
   deleteTask$ = this.dataPersistence.pessimisticUpdate(TaskActionTypes.DELETE_TASK, {
     run: (action: DeleteTask, state: TaskState) => {
-      return this.taskService.delete(action.payload).pipe(map((res: Task) => new TaskDeleted(res)))
+      return this.taskService.delete(action.payload.id).pipe(
+        map((res: number) => new TaskDeleted(action.payload))
+      )
     },
     onError: (action: DeleteTask, error) => {
       this.notifyService.notify('Delete Task Effects Error', error.message);

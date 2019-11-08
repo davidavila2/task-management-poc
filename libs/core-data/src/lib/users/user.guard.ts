@@ -12,7 +12,6 @@ export class UserGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.userService.IsAuthenticated$.value) return true;
-    console.log('is user authenticated ?', this.userService.IsAuthenticated$.value);
     this.router.navigate(['/login'])
     return false;
   }

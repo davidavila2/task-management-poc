@@ -18,7 +18,7 @@ export class TasksComponent implements OnInit {
   constructor(
     private taskFacade: TaskFacade,
     private notifyService: NotifyService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -29,33 +29,32 @@ export class TasksComponent implements OnInit {
 
   resetTask(): void {
     this.form.reset();
+    this.selectTask({ id: null } as Task)
   }
 
   selectTask(task: Task): void {
-    console.log(task);
+    this.taskFacade.selectTask(task.id);    
     this.form.patchValue(task);
-    this.taskFacade.selectTask(task.id);
   }
 
   saveTask(task: Task): void {
     if (this.form.invalid) return;
-    task.id ?
+    this.form.value.id ?
       this.taskFacade.updateTask(this.form.value) :
       this.taskFacade.createTask(this.form.value);
-    
   }
 
   deleteTask(task: Task): void {
-    const confirmation = confirm(`Are you sure you want to delete ${task} ?`);
+    const confirmation = confirm(`Are you sure you want to delete ${task.id} ?`);
 
     if (confirmation) {
-    this.taskFacade.deleteTask(task)
+      this.taskFacade.deleteTask(task)
     }
   }
 
   private initForm(): void {
     this.form = this.fb.group({
-      id: [''],
+      // id: [''],
       title: ['', Validators.compose([Validators.required])],
       description: ['', Validators.compose([Validators.required])],
       status: ['', Validators.compose([Validators.required])]
