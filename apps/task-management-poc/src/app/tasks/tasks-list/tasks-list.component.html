@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Tasks</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <mat-card-content *ngIf="!loading">
+    <mat-list>
+      <mat-list-item *ngFor="let task of tasks" (click)="select(task)">
+        <h2 mat-line>
+          {{task.title}}
+        </h2>
+        <p mat-line>
+          {{task.description}}
+        </p>
+        <p mat-line>
+          {{task.status}}
+        </p>
+        <button mat-icon-button (click)="delete(task, $event)">
+          <mat-icon>close</mat-icon>
+        </button>
+        <button mat-icon-button (click)="$event.stopImmediatePropagation()" [routerLink]="task.id">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

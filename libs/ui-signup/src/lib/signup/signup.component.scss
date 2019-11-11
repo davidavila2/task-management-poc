@@ -1,0 +1,13 @@
+mat-card {
+  min-width: 400px;
+}
+
+.login {
+  border: none;
+  background: none;
+  color: blue;
+  text-decoration: underline;
+  &:focus {
+    outline: transparent;
+  }
+}

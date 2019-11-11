@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-center align-self-center mt-5 pt-5 h-100">
+  <mat-card>
+    <form [formGroup]="signup" (submit)="signUp()">
+      <mat-card-content class="d-flex flex-column mb-0">
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" placeholder="Enter Username" formControlName="username" autocomplete="username">
+          <mat-error *ngIf="signup.get('username').hasError('required')">
+            Please type a valid username.
+          </mat-error>
+          <mat-hint>Must be longer than 3 characters and shorter than 20</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Enter Password" formControlName="password"
+            autocomplete="current-password">
+          <mat-error *ngIf="signup.get('password').hasError('required')">
+            Please type a valid password.
+          </mat-error>
+          <mat-hint>Must be longer than 7 characters and shorter than 20</mat-hint>
+        </mat-form-field>
+
+      </mat-card-content>
+      <mat-card-actions class="d-flex flex-row-reverse w-100 mr-1 mb-0">
+        <button mat-raised-button color="primary" type="submit">
+          Sign Up
+        </button>
+
+      </mat-card-actions>
+    </form>
+    <div>
+      <span class="m-0">Already have an account? <button (click)="goToLogin()" class="login">Login Now</button> </span>
+    </div>
+  </mat-card>
+</div>

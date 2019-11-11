@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { UserService } from '@task-management-poc/core-data';
 
 @Component({
   selector: "task-management-poc-root",
@@ -6,5 +7,13 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  title = "task-management-poc";
+  title = "Task Management POC";
+
+  links = [
+    { path: '/tasks', icon: 'home', title: 'Tasks' },
+  ];
+
+  UserAuthenticated$ = this.userService.IsAuthenticated$;
+
+  constructor(public userService: UserService) {}
 }
