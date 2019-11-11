@@ -31,7 +31,8 @@ export class TaskEffects {
   @Effect()
   updateTask$ = this.dataPersistence.pessimisticUpdate(TaskActionTypes.UPDATE_TASK, {
     run: (action: UpdateTask, state: TaskState) => {
-      return this.taskService.update(action.payload).pipe(map((res: Task) => new TaskUpdated(res)))
+      return this.taskService.update(action.payload).pipe(
+        map((res: Task) => new TaskUpdated(res)))
     },
     onError: (action: UpdateTask, error) => {
       this.notifyService.notify('Update Task Effects Error', error.message);

@@ -5,8 +5,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
-const SIGN_IN = 'http://localhost:3000/auth/signin';
-const SIGN_UP = 'http://localhost:3000/auth/signup';
+const SIGN_IN = 'http://task-management-poc.us-west-1.elasticbeanstalk.com/auth/signin';
+const SIGN_UP = 'http://task-management-poc.us-west-1.elasticbeanstalk.com/auth/signup';
 @Injectable({
   providedIn: 'root'
 })

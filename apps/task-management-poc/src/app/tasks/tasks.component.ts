@@ -33,13 +33,13 @@ export class TasksComponent implements OnInit {
   }
 
   selectTask(task: Task): void {
-    this.taskFacade.selectTask(task.id);    
+    this.taskFacade.selectTask(task.id);
     this.form.patchValue(task);
   }
 
   saveTask(task: Task): void {
     if (this.form.invalid) return;
-    this.form.value.id ?
+    task.id ?
       this.taskFacade.updateTask(this.form.value) :
       this.taskFacade.createTask(this.form.value);
   }
@@ -54,7 +54,7 @@ export class TasksComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.fb.group({
-      // id: [''],
+      id: [''],
       title: ['', Validators.compose([Validators.required])],
       description: ['', Validators.compose([Validators.required])],
       status: ['', Validators.compose([Validators.required])]

@@ -17,7 +17,7 @@ export class TasksDetailsComponent {
   currentTask: Task;
   originalTask: string;
 
-  @Output() saved = new EventEmitter<Object>();
+  @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
 
   @Input() form: FormGroup;

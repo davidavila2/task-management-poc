@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Task } from './task';
 
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'http://task-management-poc.us-west-1.elasticbeanstalk.com/';
 const model = 'tasks';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class TaskService {
   }
 
   update(task: Task) {
-    return this.httpClient.patch(this.getUrlForId(task.id), task);
+    return this.httpClient.patch(this.getUrlForIdToUpdateStatus(task.id), task);
   }
 
   delete(taskId) {
@@ -40,7 +40,7 @@ export class TaskService {
     return `${this.getUrl()}/${id}`;
   }
 
-  // private getUrlForIdToUpdateStatus(id: number): string {
-  //   return `${this.getUrl()}/${id}/status`;
-  // }
+  private getUrlForIdToUpdateStatus(id: number): string {
+    return `${this.getUrl()}/${id}/status`;
+  }
 }
